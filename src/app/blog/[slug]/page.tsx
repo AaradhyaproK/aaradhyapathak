@@ -15,6 +15,8 @@ import { TableOfContents } from "@/components/blog/TableOfContents";
 import { BlogShareButtons } from "@/components/blog/BlogShareButtons";
 import { MdxRenderer } from "@/components/mdx/MdxRenderer";
 import { NewsletterForm } from "@/components/blog/NewsletterForm";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { AdSlot } from "@/components/ads/AdSlot";
 import {
   ArrowLeft,
   ArrowRight,
@@ -93,6 +95,21 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="pt-32 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Google Rich Snippet Structured Data (JSON-LD) */}
+      <JsonLd type="blogPost" post={post} />
+      <JsonLd
+        type="breadcrumbs"
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Blog", url: `${siteConfig.url}/blog` },
+          {
+            name: post.category,
+            url: `${siteConfig.url}/blog/category/${encodeURIComponent(post.category.toLowerCase())}`,
+          },
+          { name: post.title, url: `${siteConfig.url}/blog/${post.slug}` },
+        ]}
+      />
+
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="mb-8">
         <ol className="flex items-center gap-2 text-xs font-mono-label text-[#A7A997]">
@@ -192,6 +209,14 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="lg:col-span-8 min-w-0">
           <MdxRenderer code={post.content} />
 
+          {/* AdSense In-Article Monetization Unit */}
+          <AdSlot
+            slotId="blog-content-bottom"
+            format="rectangle"
+            minHeight={250}
+            className="my-8"
+          />
+
           {/* Tags */}
           <div className="mt-12 pt-6 border-t border-[#34362D] flex flex-wrap items-center gap-2">
             <span className="text-xs font-mono-label text-[#A7A997] mr-2">Tags:</span>
@@ -283,6 +308,13 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Quick Share Buttons */}
             <BlogShareButtons title={post.title} slug={post.slug} />
+
+            {/* AdSense Sticky Sidebar Unit */}
+            <AdSlot
+              slotId="blog-sidebar-sticky"
+              format="vertical"
+              minHeight={250}
+            />
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && (

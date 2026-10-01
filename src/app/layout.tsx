@@ -63,6 +63,23 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: "@aaradhyapathak",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [
+      { url: "/apple-icon", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  verification: {
+    google: "YX7SA7ySorpFNlYucQdy5lGWM7SJNI0rOuk1dJEHp1U",
+  },
+  other: {
+    ...(process.env.NEXT_PUBLIC_ADSENSE_ID
+      ? { "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID }
+      : {}),
+  },
   robots: {
     index: true,
     follow: true,
@@ -88,6 +105,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta
+          name="google-site-verification"
+          content="YX7SA7ySorpFNlYucQdy5lGWM7SJNI0rOuk1dJEHp1U"
+        />
         <JsonLd type="home" />
       </head>
       <body className="bg-[#0E0F0C] text-[#F2F0E6] antialiased min-h-screen flex flex-col font-sans selection:bg-[#C8F169] selection:text-[#0E0F0C]">

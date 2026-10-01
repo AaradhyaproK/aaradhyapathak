@@ -72,9 +72,13 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-1.5 font-display text-xl sm:text-2xl font-extrabold tracking-tight text-[#F2F0E6] hover:opacity-90 transition-opacity touch-target"
+              className="flex items-center gap-2 font-display text-xl sm:text-2xl font-extrabold tracking-tight text-[#F2F0E6] hover:opacity-90 transition-opacity touch-target"
               aria-label={`${siteConfig.name} - Home`}
             >
+              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#23251D] border border-[#34362D] flex items-center justify-center font-display font-black text-xs sm:text-sm tracking-tighter shrink-0 shadow-sm">
+                <span className="text-[#F2F0E6]">A</span>
+                <span className="text-[#C8F169]">P</span>
+              </span>
               <span>Aaradhya</span>
               <span className="text-[#C8F169]">.</span>
             </Link>
@@ -156,8 +160,12 @@ export function Navbar() {
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-1.5 font-display text-2xl font-extrabold tracking-tight text-[#F2F0E6]"
+              className="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight text-[#F2F0E6]"
             >
+              <span className="w-8 h-8 rounded-lg bg-[#23251D] border border-[#34362D] flex items-center justify-center font-display font-black text-sm tracking-tighter shrink-0 shadow-sm">
+                <span className="text-[#F2F0E6]">A</span>
+                <span className="text-[#C8F169]">P</span>
+              </span>
               <span>Aaradhya</span>
               <span className="text-[#C8F169]">.</span>
             </Link>

@@ -115,19 +115,34 @@ export function JsonLd(props: JsonLdProps) {
         datePublished: props.post.date,
         dateModified: props.post.updated || props.post.date,
         url: `${siteConfig.url}/blog/${props.post.slug}`,
+        inLanguage: "en-IN",
+        isAccessibleForFree: true,
+        articleSection: props.post.category,
+        keywords: props.post.tags ? props.post.tags.join(", ") : undefined,
         author: {
           "@type": "Person",
-          name: props.post.author,
+          name: props.post.author || siteConfig.author.name,
+          jobTitle: "Co-Founder @ SNAB Innovations & Full Stack Web Developer",
           url: siteConfig.url,
+          image: `${siteConfig.url}/images/aaradhyacover-img.png`,
+          sameAs: [
+            siteConfig.social.github,
+            siteConfig.social.linkedin,
+            siteConfig.social.twitter,
+          ],
         },
         publisher: {
-          "@type": "Person",
-          name: siteConfig.name,
-          url: siteConfig.url,
+          "@type": "Organization",
+          name: "SNAB Innovations",
+          url: "https://snab.co.in",
+          logo: {
+            "@type": "ImageObject",
+            url: `${siteConfig.url}/icon.svg`,
+          },
         },
         image: props.post.cover?.image
           ? `${siteConfig.url}${props.post.cover.image}`
-          : undefined,
+          : `${siteConfig.url}/images/aaradhyacover-img.png`,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": `${siteConfig.url}/blog/${props.post.slug}`,

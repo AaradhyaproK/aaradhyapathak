@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site";
 import { getAllPosts, getAllCategories } from "@/lib/posts";
 import { BlogSearchList } from "@/components/blog/BlogSearchList";
 import { NewsletterForm } from "@/components/blog/NewsletterForm";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -21,6 +22,16 @@ export default function BlogIndexPage() {
 
   return (
     <div className="pt-32 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Search Engine Collection & Breadcrumbs Structured Data */}
+      <JsonLd type="blogIndex" posts={posts} />
+      <JsonLd
+        type="breadcrumbs"
+        items={[
+          { name: "Home", url: siteConfig.url },
+          { name: "Blog", url: `${siteConfig.url}/blog` },
+        ]}
+      />
+
       {/* Header */}
       <div className="max-w-3xl mb-12">
         <span className="font-mono-label text-xs text-[#C8F169] tracking-widest uppercase">
