@@ -1,0 +1,72 @@
+---
+title: "Architecting an AI Interview Assessment Platform with Gemini and AssemblyAI"
+description: "A deep dive into engineering automated interview assessments using Google Gemini multimodal APIs, real-time speech AI, and scalable scoring rubrics."
+slug: "building-ai-interview-platform-with-gemini"
+date: "2025-09-15"
+updated: "2025-10-01"
+category: "AI & Full Stack"
+tags:
+  - "Gemini API"
+  - "AssemblyAI"
+  - "React"
+  - "Node.js"
+cover:
+  image: "/images/blog/ai-interview-architecture-art.webp"
+  alt: "AI Interview Assessment Architecture Diagram"
+author: "Aaradhya Pathak"
+draft: false
+affiliate: false
+faq:
+  - question: "How does AssemblyAI integrate with the Gemini scoring pipeline?"
+    answer: "AssemblyAI converts user microphone audio to timestamped text streams, which are subsequently batched and structured into Gemini prompts for multi-dimensional rubric scoring."
+  - question: "How did the platform handle 100 concurrent interviews daily?"
+    answer: "By utilizing asynchronous webhook workers and client-side audio streaming, reducing database queue locks and server response latency."
+---
+
+## Introduction
+
+Technical recruitment processes frequently encounter severe bottlenecks during initial candidate screening. In traditional recruitment workflows, senior engineering leads dedicate over 40 hours each week conducting repetitive preliminary interviews.
+
+To solve this challenge, I architected **InterviewXpert (AI Base)**, an automated candidate evaluation platform that leverages **Google Gemini** multimodal models and **AssemblyAI** real-time speech transcription to deliver objective, scalable candidate screening.
+
+## The Architectural Challenge
+
+Designing an automated assessment platform requires solving three distinct engineering problems:
+
+1. **Sub-second Speech Processing**: Transcribing candidate audio responses with high linguistic accuracy and minimal latency.
+2. **Context-Aware Prompt Structuring**: Ensuring the generative AI model scores responses against standardized technical rubrics without conversational drift.
+3. **High-Concurrency Scalability**: Supporting dozens of concurrent candidates without exhausting API rate limits or degrading audio fidelity.
+
+```typescript
+// Sample API client integration pipeline
+import { AssemblyAI } from "assemblyai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const speechClient = new AssemblyAI({ apiKey: process.env.ASSEMBLYAI_KEY! });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+
+export async function processInterviewResponse(audioUrl: string, rubricPrompt: string) {
+  // 1. Transcribe audio response
+  const transcript = await speechClient.transcripts.transcribe({ audio: audioUrl });
+  
+  // 2. Evaluate with Gemini Pro model
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+  const result = await model.generateContent([
+    rubricPrompt,
+    `Candidate Transcript: ${transcript.text}`
+  ]);
+  
+  return result.response.text();
+}
+```
+
+## Measurable Results and Impact
+
+By deploying this architecture, our recruitment partner **DSource Placements** achieved:
+- **3x turnaround acceleration** in technical candidate qualification.
+- **100 concurrent daily interviews** handled smoothly with zero server downtime.
+- **Top 10 national ranking** at a prominent Generative AI hackathon.
+
+## Conclusion
+
+Combining multimodal LLMs with specialized real-time speech transcription enables technical teams to automate preliminary screening without sacrificing scoring depth.
