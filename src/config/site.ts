@@ -11,7 +11,11 @@ export const siteConfig = {
   tagline: "Co-Founder @ SNAB Innovations • Full Stack Web Developer • Google Gemini Student Ambassador",
   description:
     "Co-Founder of SNAB Innovations. Architect of FileZenith, FeeKit, and InterviewXpert serving commercial clients. Full Stack Developer & QA Tester in MERN, PHP, Java, and AI systems. B.E. Computer Engineering scholar (CGPA 8.2).",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://aaradhyapathak.com",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "https://aaradhyadev.vercel.app"),
   email: "aaradhya1774@gmail.com",
   corporateEmail: "hello@snab.co.in",
   phone: "+91 9511779317",
@@ -39,8 +43,9 @@ export const siteConfig = {
     avatar: "/images/aaradhyacover-img.png",
     education: {
       degree: "Bachelor of Engineering (B.E.) in Computer Engineering",
-      institution: "Guru Gobind Singh College of Engineering & Research Centre, Nashik",
-      status: "Third Year (2022 – 2026)",
+      institution: "Guru Gobind Singh College of Engineering & Research Centre (GGSF), Nashik",
+      university: "Savitribai Phule Pune University (SPPU)",
+      status: "2022 – 2026",
       sgpa: "8.2",
       cgpa: "8.2",
     },

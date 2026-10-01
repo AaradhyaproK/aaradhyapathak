@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Copy, Check, Share2 } from "lucide-react";
 import { TwitterXIcon, LinkedinIcon } from "@/components/ui/Icons";
+import { siteConfig } from "@/config/site";
 
 interface BlogShareButtonsProps {
   title: string;
@@ -23,7 +24,7 @@ export function BlogShareButtons({ title, slug }: BlogShareButtonsProps) {
   const currentUrl =
     typeof window !== "undefined"
       ? window.location.href
-      : `https://aaradhyapathak.com/blog/${slug}`;
+      : `${siteConfig.url}/blog/${slug}`;
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     title

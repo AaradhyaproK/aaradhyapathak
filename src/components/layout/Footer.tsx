@@ -5,6 +5,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { GithubIcon, LinkedinIcon, TwitterXIcon } from "@/components/ui/Icons";
 import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
+import { ResumeButton } from "@/components/resume/ResumeButton";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -176,15 +177,9 @@ export function Footer() {
                   </li>
                 ))}
                 <li>
-                  <a
-                    href={siteConfig.resumeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#A7A997] hover:text-[#C8F169] hover:translate-x-1 inline-flex items-center gap-1 transition-all py-0.5"
-                  >
-                    <span>Resume</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </a>
+                  <ResumeButton variant="footer">
+                    Resume
+                  </ResumeButton>
                 </li>
               </ul>
             </div>

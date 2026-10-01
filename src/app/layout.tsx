@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/analytics/CookieConsent";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ResumeModalProvider } from "@/components/resume/ResumeModalContext";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -120,16 +121,18 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        {/* Global Navigation */}
-        <Navbar />
+        {/* Resume Modal Provider & Global Navigation */}
+        <ResumeModalProvider>
+          <Navbar />
 
-        {/* Main Content Area */}
-        <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-          {children}
-        </main>
+          {/* Main Content Area */}
+          <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+            {children}
+          </main>
 
-        {/* Global Footer */}
-        <Footer />
+          {/* Global Footer */}
+          <Footer />
+        </ResumeModalProvider>
 
         {/* Consent Mode v2 Cookie Banner */}
         <CookieConsent />

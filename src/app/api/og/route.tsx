@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
+import { siteConfig } from "@/config/site";
 
 export const runtime = "nodejs";
 
@@ -51,7 +52,7 @@ export async function GET(req: NextRequest) {
                 letterSpacing: "1.5px",
               }}
             >
-              aaradhyapathak.com
+              {siteConfig.url.replace(/^https?:\/\//, "")}
             </span>
           </div>
 

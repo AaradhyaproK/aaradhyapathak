@@ -98,7 +98,7 @@ def create_base_canvas(category: str, tag: str):
     # Bottom author metadata bar
     draw.line([(80, H - 90), (W - 80, H - 90)], fill=(52, 54, 45, 200), width=1)
     draw.text((80, H - 75), "Aaradhya Pathak • Founder @ SNAB Innovations", font=fonts["meta"], fill=(242, 240, 230, 255))
-    draw.text((W - 250, H - 75), "aaradhyapathak.com", font=fonts["meta"], fill=(200, 241, 105, 255))
+    draw.text((W - 270, H - 75), "aaradhyadev.vercel.app", font=fonts["meta"], fill=(200, 241, 105, 255))
 
     return img
 

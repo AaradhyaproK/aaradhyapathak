@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { ArrowUpRight, FileText } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { ResumeButton } from "@/components/resume/ResumeButton";
 
 export function HeroSection() {
   return (
@@ -48,16 +49,9 @@ export function HeroSection() {
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </Link>
 
-              <a
-                href={siteConfig.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="touch-target px-6 py-3 rounded-full bg-[#191B15] text-[#F2F0E6] font-mono-label font-semibold text-xs border border-[#34362D] hover:border-[#C8F169] hover:text-[#C8F169] transition-all active:scale-95 flex items-center justify-center gap-2 text-center"
-                aria-label="View Aaradhya Pathak's Resume in PDF format"
-              >
-                <FileText className="w-4 h-4" />
-                <span>View Resume</span>
-              </a>
+              <ResumeButton variant="hero">
+                View Resume
+              </ResumeButton>
 
               <Link
                 href="/contact"

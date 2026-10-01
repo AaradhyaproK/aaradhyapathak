@@ -15,6 +15,7 @@ import {
   Users,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/Icons";
+import { ResumeButton } from "@/components/resume/ResumeButton";
 
 export const metadata: Metadata = {
   title: "About Aaradhya Pathak — Founder @ SNAB & Full Stack Engineer",
@@ -106,15 +107,9 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <a
-                  href={siteConfig.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="touch-target px-4 py-2 rounded-full bg-[#C8F169] text-[#0E0F0C] font-mono-label font-bold text-xs hover:bg-[#D8F788] transition-all flex items-center gap-2"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Resume PDF</span>
-                </a>
+                <ResumeButton variant="about">
+                  Resume PDF
+                </ResumeButton>
               </div>
             </div>
 
