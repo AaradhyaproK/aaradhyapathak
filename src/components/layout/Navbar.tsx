@@ -5,9 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { Menu, X, ArrowUpRight, Mail, FileText } from "lucide-react";
+import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterXIcon } from "@/components/ui/Icons";
-import { useResumeModal } from "@/components/resume/ResumeModalContext";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", num: "01" },
@@ -21,7 +20,6 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { openResumeModal } = useResumeModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,18 +108,8 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* Right Action: Desktop Resume & Connect Buttons & Mobile Hamburger Toggle */}
+            {/* Right Action: Desktop Connect Button & Mobile Hamburger Toggle */}
             <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={openResumeModal}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#191B15] text-[#F2F0E6] font-mono-label text-xs border border-[#34362D] hover:border-[#C8F169] hover:text-[#C8F169] transition-all active:scale-95 touch-target cursor-pointer"
-                aria-label="View Resume modal"
-              >
-                <FileText className="w-3.5 h-3.5 text-[#C8F169]" />
-                <span>Resume</span>
-              </button>
-
               {siteConfig.openToWork && (
                 <Link
                   href="/contact"
@@ -247,29 +235,15 @@ export function Navbar() {
               <span className="text-[#C8F169]">Open to Work</span>
             </div>
 
-            {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openResumeModal();
-                }}
-                className="py-3 px-4 rounded-2xl bg-[#191B15] text-[#F2F0E6] font-mono-label font-bold text-xs border border-[#34362D] hover:border-[#C8F169] flex items-center justify-center gap-2 active:scale-95 transition-all touch-target cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-[#C8F169]" />
-                <span>Resume</span>
-              </button>
-
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-3 px-4 rounded-2xl bg-[#C8F169] text-[#0E0F0C] font-mono-label font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-[#D8F788] active:scale-[0.98] transition-all shadow-lg shadow-[#C8F169]/15 touch-target text-center"
-              >
-                <span>Connect</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-              </Link>
-            </div>
+            {/* Main Action CTA */}
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3.5 px-6 rounded-2xl bg-[#C8F169] text-[#0E0F0C] font-mono-label font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#D8F788] active:scale-[0.98] transition-all shadow-lg shadow-[#C8F169]/15 touch-target"
+            >
+              <span>Let&apos;s Connect</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+            </Link>
 
             {/* Quick Contact & Socials Bar */}
             <div className="flex items-center justify-between pt-2">
